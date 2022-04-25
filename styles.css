@@ -1,0 +1,294 @@
+/* *,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; */
+
+body {
+    margin: 0;
+    font-family: 'Noto Sans', sans-serif;
+    line-height: 1.5;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+h1, h2, h3, p {
+    margin: 0;
+}
+
+.container {
+    width: 85%;
+    margin: 0 auto;
+    max-width: 65em; 
+    /* 65x16 = 1040px */
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.125rem;
+    background: var(--clr-accent, blue);
+    color: var(--clr-text, white);
+    padding: .5em 1.25em; 
+    border-radius: .25em;
+    transition: 
+        transform 250ms ease-in-out
+        opacity 250ms linear;
+}
+
+.btn:hover,
+.btn:focus {
+    transform: scale(1.05);
+    opacity: .9;
+}
+
+.primary-title {
+    font-size: 4rem;
+    font-size: clamp(3rem, calc(5vw + 1rem), 4.5rem);
+    /* the min it can be is 3rem, the max it can be is 4.5rem and in between it grows at the rate (5vw + 1rem) */
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.section-title {
+    text-align: center;
+    font-size: clamp(2.5rem, calc(5vw + 1rem), 4rem);
+    line-height: 1;
+    color: #17353d;
+    margin-bottom: 4rem;
+}
+
+section {
+    padding: 7em 0;
+}
+
+.hero {
+    color: white;
+    text-align: center;
+    padding: 15em 0;
+    background: #222;
+    /* background-size: 10%; to creat repetionion*/
+}
+
+@supports (background-blend-mode: multiply) {
+    .hero {
+        background:  
+            url(./images/shoe9.png),
+            radial-gradient(#444, #111);
+        background-blend-mode: multiply;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    /* the above, if the browser supports background-blend-mode it does the above otherwise it sticks to the background color specified earlier */
+}
+
+
+/* spacing and split are utility classes */
+.spacing >*+* {
+    margin-top: var(--spacer, 2rem);
+}
+/* .spacing >*+* targets all child elements that have a sibling before them */
+
+
+.split  {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+}
+
+
+/* some formatting for the featured items */
+.split > * {
+    flex-basis: 30%;
+    min-width: 15em;
+}
+
+/* controls the featured background */
+.featured {
+    background: #eee;
+}
+
+/* styling for the link containing the shoes on the featured section */
+.featured__item {
+    display: block;
+    position: relative;
+    transform: scale(.75);
+    transition: transform 250ms ease-in-out;
+    text-decoration: none;
+    color: #333;
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* on hover it increases from .75 specified above to 1(its actual size) */
+.featured__item:hover, :focus {
+    transform: scale(1);
+}
+
+
+/* styling for the pseudo item(circle behind the shoes) */
+.featured__item::after {
+    content: '';
+    position: absolute;
+    top: 15%;
+    right: 10%;
+    padding: 75% 75% 0 0;
+    background: #2193b0;
+    border-radius:50%;
+    z-index: -1;
+}
+
+/* styling for the prices on featured */
+.price {
+    display: block;
+    font-weight: 700;
+    font-size: 2.5rem;
+    
+}
+
+/* hide shoes price and name */
+.featured__details {
+    opacity: 0;
+    transition: opacity 250ms linear;
+    text-transform: capitalize;
+}
+
+
+/* display shoe name and price on hover and focus */
+.featured__item:hover .featured__details ,
+.featured__item:focus .featured__details {
+    opacity: 1;
+}
+
+.product {
+    background: radial-gradient(var(--clr-inner, limegreen), var(--clr-outer, purple));
+    padding: 3em;
+    border-radius: 1em;
+    margin-bottom: 5em;
+    text-align: left;
+}
+
+.product__title {
+    font-size: clamp(3rem, calc(5vw + 1rem), 5.5rem);
+    text-transform: uppercase;
+    line-height: 1;
+    color: #fff;
+    text-shadow: 0 0 0.2em rgba(0, 0, 0, 0.2);
+    
+}
+
+.product__image {
+    margin: -5em 0 0 0;
+    float: right;
+}
+
+/* .image_rotate{
+    transition: transform 500ms ease-in-out;
+}
+
+.image_rotate:hover{
+    transform: rotate(-30deg);
+} */
+
+.image_rotate{
+    transform: rotate(-30deg);
+}
+
+
+@media  screen and (max-width: 45em){
+    .product__image {
+        float: right;
+        width: 65%;
+        shape-outside: url(./images/);
+    }
+    .product__title {
+        font-size: 2.5rem;
+        margin: 0;
+    }
+
+    .product {
+        text-align: left;
+        padding: 2em;
+    }
+
+    .shoe-1 {
+        shape-outside: url(./images/shoe12d.png);
+    }
+
+    .shoe-2 {
+        shape-outside: url(./images/shoe4c.png);
+    }
+
+    .shoe-3 {
+        shape-outside: url(./images/shoe2c.png);
+    }
+} 
+
+
+@media  screen and (max-width: 30em){
+    .product__image {
+        float: left;
+        width: 90%;
+        shape-outside: url(./images/shoe12d.png);
+        margin: -3em 0 3em 0;
+    }
+    .product__title {
+        font-size: 2rem;
+        margin-top: 1em;
+    }
+
+    .product {
+        text-align: center;
+        padding: 2em;
+    }
+
+    
+}
+
+/* declared colors */
+/* note that the variables have to be declared inside the item */
+
+.shoe-1 {
+    --clr-inner: #faa700;
+    --clr-outer: #e48d00;
+    --clr-accent: #a1173c;
+}
+.shoe-2 {
+    --clr-inner: #fce4b3;
+    --clr-outer: #eac886;
+    --clr-accent: #008951;
+}
+.shoe-3 {
+    --clr-inner: #6dd5ed;
+    --clr-outer: #2193b0;
+    --clr-accent: #2f4858;
+}
+
+.hero{
+    --clr-accent:#faa700;
+}
+
+
+/*
+.shoe-1 {
+    --clr-inner: #faa700;
+    --clr-outer: #e48d00;
+    --clr-accent: #a1173c;
+}
+.shoe-2 {
+    --clr-inner: #fce4b3;
+    --clr-outer: #eac886;
+    --clr-accent: #2f4858;
+}
+.shoe-3 {
+    --clr-inner: #6dd5ed;
+    --clr-outer: #2193b0;
+    --clr-accent: #008951;
+}*/
